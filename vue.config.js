@@ -149,6 +149,7 @@ module.exports = {
         'components':'@/components',
         'api':'@/api',
         'views':'@/views',
+				'base':'@/base',
       }
     }
   }
