@@ -15,7 +15,11 @@ const routes = [
   },
 	{
 	  path: '/singer',
-	  component:() => import('components/singer/singer')
+	  component:() => import('components/singer/singer'),
+		children:[{
+			path:':id',
+			component:() => import('components/singer-detail/singer-detail')
+		}]
 	},
 	{
 	  path: '/search',

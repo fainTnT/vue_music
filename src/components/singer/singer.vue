@@ -9,6 +9,7 @@
   import { getSingerList } from 'api/singer'
   import { ERR_OK } from 'api/config'
   import Singer from 'common/js/singer'
+	import {mapMutations} from 'vuex'
 
   const HOT_SINGER_LEN = 10
   const HOT_NAME = '热门'
@@ -23,6 +24,9 @@
       this._getSingerList()
     },
     methods: {
+			...mapMutations({
+				setSinger:'SET_SINGER'
+			}),
       handlePlaylist (playlist) {
         const bottom = playlist.length > 0 ? '60px' : ''
         this.$refs.singer.style.bottom = bottom
