@@ -1,40 +1,66 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
+Vue.use(Router)
 
-Vue.use(VueRouter)
+const Recommend = () => import('components/recommend/recommend')
+const Singer = () => import('components/singer/singer')
+const Rank = () => import('components/rank/rank')
+const Search = () => import('components/search/search')
+const SingerDetail = () => import('components/singer-detail/singer-detail')
+const Disc = () => import('components/disc/disc')
+const TopList = () => import('components/top-list/top-list')
+const UserCenter = () => import('components/user-center/user-center')
 
-const routes = [
-	{
-		path:'/',
-		redirect:'/recommend'
-	},
-  {
-    path: '/recommend',
-    component:() => import('components/recommend/recommend')
-  },
-	{
-	  path: '/singer',
-	  component:() => import('components/singer/singer'),
-		children:[{
-			path:':id',
-			component:() => import('components/singer-detail/singer-detail')
-		}]
-	},
-	{
-	  path: '/search',
-	  component:() => import('components/search/search')
-	},
-	{
-	  path: '/rank',
-	  component:() => import('components/rank/rank')
-	},
-]
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      redirect: '/recommend'
+    },
+    {
+      path: '/recommend',
+      component: Recommend,
+      children: [
+        {
+          path: ':id',
+          component: Disc
+        }
+      ]
+    },
+    {
+      path: '/singer',
+      component: Singer,
+      children: [
+        {
+          path: ':id',
+          component: SingerDetail
+        }
+      ]
+    },
+    {
+      path: '/rank',
+      component: Rank,
+      children: [
+        {
+          path: ':id',
+          component: TopList
+        }
+      ]
+    },
+    {
+      path: '/search',
+      component: Search,
+      children: [
+        {
+          path: ':id',
+          component: SingerDetail
+        }
+      ]
+    },
+    {
+      path: '/user',
+      component: UserCenter
+    }
+  ]
 })
-
-export default router
