@@ -152,5 +152,8 @@ module.exports = {
 				'base':'@/base',
       }
     }
-  }
+  },
+	publicPath:'./',
+	outputDir:'dist',
+	assetsDir:'static'
 }
